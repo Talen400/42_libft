@@ -6,7 +6,7 @@
 /*   By: tlavared <tlavared@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:06:27 by tlavared          #+#    #+#             */
-/*   Updated: 2025/07/16 20:08:00 by tlavared         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:58:03 by tlavared         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	ft_isalnum(int c)
 {
-	if (ft_isalpha(int c) || ft_isalnum(int c))
+	if ((c >= '0' && c <= '9') ||
+			(c >= 'a' && c <= 'z') ||
+			(c >= 'A' && c <= 'Z'))
 	{
 		return (1);
 	}
