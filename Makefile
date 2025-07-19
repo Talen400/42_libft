@@ -1,4 +1,4 @@
-NAME = libft
+NAME = libft.a
 NAME_TEST = test
 
 CC = gcc
@@ -6,6 +6,13 @@ FLAGS = -Wall -Wextra -Werror
 
 C_SRC = $(filter-out minunit_example.c, $(wildcard *.c))
 OBJ = $(C_SRC:.c=.o)
+H_SRC = $(wildcard *.h)
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	ar rcs $@ $^
+	ranlib $@
 
 $(NAME_TEST) : $(OBJ)
 	$(CC) $(FLAGS) $^ -o $@
