@@ -257,6 +257,33 @@ static char * test_memcpy()
 	return (0);
 }
 
+static char	* test_atoi()
+{
+	printf("%i\n", ft_atoi("42"));
+	printf("%i\n", ft_atoi("1"));
+	printf("%i\n", ft_atoi("+1"));
+	printf("%i\n", ft_atoi("-1"));
+	
+	mu_assert("Erro: ft_atoi test 1", ft_atoi(" 1") == 1);
+	mu_assert("Erro: ft_atoi test 2", ft_atoi("a1") == 0);
+	mu_assert("Erro: ft_atoi test 3", ft_atoi("--1") == 0);
+    mu_assert("Erro: ft_atoi test 4", ft_atoi("++1") == 0);
+    mu_assert("Erro: ft_atoi test 5", ft_atoi(" +1") == 1);
+    mu_assert("Erro: ft_atoi test 6", ft_atoi(" -1") == -1);
+    mu_assert("Erro: ft_atoi test 7", ft_atoi("0") == 0);
+    mu_assert("Erro: ft_atoi test 8", ft_atoi("+42lyon") == 42);
+    mu_assert("Erro: ft_atoi test 9", ft_atoi("+101") == 101);
+    mu_assert("Erro: ft_atoi test 10", ft_atoi("2147483647") == 2147483647);
+    mu_assert("Erro: ft_atoi test 11", ft_atoi("-2147483648") == -2147483648);
+    mu_assert("Erro: ft_atoi test 12", ft_atoi("-+42") == 0);
+    mu_assert("Erro: ft_atoi test 13", ft_atoi("+-42") == 0);
+    mu_assert("Erro: ft_atoi test 14", ft_atoi("+42") == 42);
+    mu_assert("Erro: ft_atoi test 15", ft_atoi("-42") == -42);
+    mu_assert("Erro: ft_atoi test 16", ft_atoi("142") == 142);
+    mu_assert("Erro: ft_atoi test 17", ft_atoi("-142") == -142);
+	return (0);
+}
+
 static char * all_tests()
 {
 	mu_run(test_isalpha);
@@ -276,6 +303,8 @@ static char * all_tests()
 	mu_run(test_strlcat);
 	mu_run(test_memset);
 	mu_run(test_memcpy);
+
+	mu_run(test_atoi);
 	return (0);
 }
 

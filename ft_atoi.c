@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlavared <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/19 12:09:06 by tlavared          #+#    #+#             */
-/*   Updated: 2025/07/23 15:10:39 by tlavared         ###   ########.fr       */
+/*   Created: 2025/07/23 11:51:42 by tlavared          #+#    #+#             */
+/*   Updated: 2025/07/23 13:10:27 by tlavared         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_atoi(const char *nptr)
 {
-	size_t	len;
+	char	*str;
+	int		sign;
+	int		integer;
 
-	len = 0;
-	while (*s)
+	str = (char *) nptr;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		len++;
-		s++;
+		if (*str == '-')
+			sign *= -1;
+		str++;
 	}
-	return (len);
+	integer = 0;
+	while (ft_isdigit(*str))
+	{
+		integer = integer * 10 +(*str - '0');
+		str++;
+	}
+	return (integer * sign);
 }
