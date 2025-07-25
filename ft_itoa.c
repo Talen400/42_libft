@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlavared <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 18:56:27 by tlavared          #+#    #+#             */
-/*   Updated: 2025/07/25 17:12:28 by tlavared         ###   ########.fr       */
+/*   Created: 2025/07/25 16:43:24 by tlavared          #+#    #+#             */
+/*   Updated: 2025/07/25 17:17:35 by tlavared         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_itoa(int n)
 {
-	int		right;
-	int		left;
-	int		len;
+	int		num;
 	char	*str;
+	int		len;
 
-	right = 0;
-	while (ft_strchr(set, s1[right]) != NULL)
-		right++;
-	len = ft_strlen(s1);
-	left = len - 1;
-	while (left >= right && ft_strrchr(set, s1[left]) != NULL)
-		left--;
-	if (left < right)
-		left = right - 1;
-	str = malloc((left - right + 2) * sizeof(char));
+	num = n;
+	len = 0;
+	while (num && len++)
+		num /= 10;
+	str = malloc ((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
-	ft_strlcpy(str, s1 + right, left - right + 2);
+	str[len + 1] = '\0';
+	while (--len)
+	{
+		str[len] = n % 10;
+		n /= 10;
+	}
 	return (str);
 }

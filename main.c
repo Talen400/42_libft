@@ -259,11 +259,6 @@ static char * test_memcpy()
 
 static char	* test_atoi()
 {
-	printf("%i\n", ft_atoi("42"));
-	printf("%i\n", ft_atoi("1"));
-	printf("%i\n", ft_atoi("+1"));
-	printf("%i\n", ft_atoi("-1"));
-	
 	mu_assert("Erro: ft_atoi test 1", ft_atoi(" 1") == 1);
 	mu_assert("Erro: ft_atoi test 2", ft_atoi("a1") == 0);
 	mu_assert("Erro: ft_atoi test 3", ft_atoi("--1") == 0);
@@ -281,6 +276,27 @@ static char	* test_atoi()
     mu_assert("Erro: ft_atoi test 15", ft_atoi("-42") == -42);
     mu_assert("Erro: ft_atoi test 16", ft_atoi("142") == 142);
     mu_assert("Erro: ft_atoi test 17", ft_atoi("-142") == -142);
+	return (0);
+}
+
+static char	* test_strtrim()
+{
+	//printf("'%s'\n", ft_strtrim("   xxxtripouille", " x"));
+	//printf("'%s'\n", ft_strtrim("tripouille   xxx", " x"));
+	//printf("'%s'\n", ft_strtrim(" x  tripouille   xxx", " x"));
+	return (0);
+}
+
+static char	* test_split()
+{
+	char	**str;
+
+	str = ft_split("asd asd ads asd", ' ');
+	while (*str)
+	{
+		printf("%s\n", *str);
+		str++;
+	}
 	return (0);
 }
 
@@ -305,6 +321,10 @@ static char * all_tests()
 	mu_run(test_memcpy);
 
 	mu_run(test_atoi);
+
+	mu_run(test_strtrim);
+
+	mu_run(test_split);
 	return (0);
 }
 
