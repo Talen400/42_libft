@@ -300,6 +300,16 @@ static char	* test_split()
 	return (0);
 }
 
+static char	* test_itoa()
+{
+	printf("%s\n", ft_itoa(42));
+	printf("%s\n", ft_itoa(0));
+	printf("%s\n", ft_itoa(-42));
+	printf("%s\n", ft_itoa(2147483647));
+	printf("%s\n", ft_itoa(-2147483648));
+	return (0);
+}
+
 static char * all_tests()
 {
 	mu_run(test_isalpha);
@@ -325,6 +335,7 @@ static char * all_tests()
 	mu_run(test_strtrim);
 
 	mu_run(test_split);
+	mu_run(test_itoa);
 	return (0);
 }
 
