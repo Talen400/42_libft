@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ascii.c                                         :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlavared <tlavared@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlavared <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 20:14:58 by tlavared          #+#    #+#             */
-/*   Updated: 2025/07/19 11:56:21 by tlavared         ###   ########.fr       */
+/*   Created: 2025/07/26 20:55:50 by tlavared          #+#    #+#             */
+/*   Updated: 2025/07/26 21:05:00 by tlavared         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+t_list	*ft_lstnew(void *content)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	t_list	list;
+
+	list.content = *content;
+	return (list);
 }
