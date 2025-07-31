@@ -6,7 +6,7 @@
 /*   By: tlavared <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:17:14 by tlavared          #+#    #+#             */
-/*   Updated: 2025/07/23 16:10:25 by tlavared         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:15:24 by tlavared         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*sub;
-	char	*str;
+	char			*sub;
+	char			*str;
 	unsigned int	len_sub;
 	unsigned int	len_s;
 

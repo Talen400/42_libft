@@ -6,7 +6,7 @@
 /*   By: tlavared <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 20:13:38 by tlavared          #+#    #+#             */
-/*   Updated: 2025/07/26 20:21:50 by tlavared         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:15:05 by tlavared         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd('-', fd);
 		nbr *= -1;
 	}
-	if (nbr >=10)
+	if (nbr >= 10)
 		(ft_putnbr_fd(nbr / 10, fd));
 	ft_putchar_fd((nbr % 10 + '0'), fd);
 }
