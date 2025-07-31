@@ -1,4 +1,4 @@
-name: Makefile CI
+name: Makefile CI (Francinette)
 
 on:
   push:
@@ -14,5 +14,21 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+        
     - name: Install dependencies
-      run: make retest
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc make libbsd-dev
+
+    - name: Install Francinette
+      run: |
+        python -m pip install --upgrade pip
+        pip install francinette
+
+    - name: Run Francinette
+      run:
+        francinette
