@@ -1,4 +1,4 @@
-name: Makefile CI (Francinette)
+name: Francinette CI
 
 on:
   push:
@@ -7,38 +7,31 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
-        
     - name: Install dependencies
       run: |
         sudo apt-get update
         sudo apt-get install -y gcc make libbsd-dev python3-pip git python3-venv
+        sudo apt-get install -y python3.12-full
 
-    - name: Install Francinette (official method)
+    - name: Install Francinette with fix
       run: |
-        # Run installer non-interactively
-        curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh | bash -s -- -y
+        git clone https://github.com/xicodomingues/francinette.git ~/francinette
         
-        # Add to PATH
-        echo "$HOME/francinette/bin" >> $GITHUB_PATH
-        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        sed -i "s/from pipes import quote/from shlex import quote/g" ~/francinette/testers/libft/Fsoares.py
         
-        # Verify installation
-        ls -la $HOME/francinette/bin/francinette
-        ls -la $HOME/francinette/venv/bin/python
+        python3 -m venv ~/francinette/venv
+        source ~/francinette/venv/bin/activate
+        
+        pip install wheel
+        pip install -r ~/francinette/requirements.txt
 
     - name: Run Francinette
       run: |
-        # Use the installed wrapper
-        $HOME/francinette/bin/francinette --version
-        $HOME/francinette/bin/francinette .
+        ~/francinette/venv/bin/python -c "from francinette import main; main()" --version
+        ~/francinette/venv/bin/python -c "from francinette import main; main()" .
