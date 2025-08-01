@@ -24,19 +24,21 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y gcc make libbsd-dev python3-pip git python3-venv
 
-    - name: Install Francinette
+    - name: Install Francinette (official method)
       run: |
-        python3 -m venv venv
-        . venv/bin/activate
-
-        pip install wheel setuptools
-
-        pip install --no-cache-dir --timeout 100 git+https://github.com/xicodomingues/francinette.git
-
-        pip show francinette
+        # Run installer non-interactively
+        curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh | bash -s -- -y
+        
+        # Add to PATH
+        echo "$HOME/francinette/bin" >> $GITHUB_PATH
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        
+        # Verify installation
+        ls -la $HOME/francinette/bin/francinette
+        ls -la $HOME/francinette/venv/bin/python
 
     - name: Run Francinette
       run: |
-        . venv/bin/activate
-        python -c "from francinette import main; main()" --version
-        python -c "from francinette import main; main()" .
+        # Use the installed wrapper
+        $HOME/francinette/bin/francinette --version
+        $HOME/francinette/bin/francinette .
