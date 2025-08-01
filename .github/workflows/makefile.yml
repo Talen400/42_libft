@@ -26,12 +26,17 @@ jobs:
 
     - name: Install Francinette
       run: |
-        python3 -m venv francinette-venv
-        source francinette-venv/bin/activate
-        pip install git+https://github.com/xicodomingues/francinette.git
+        python3 -m venv venv
+        . venv/bin/activate
+
+        pip install wheel setuptools
+
+        pip install --no-cache-dir --timeout 100 git+https://github.com/xicodomingues/francinette.git
+
+        pip show francinette
 
     - name: Run Francinette
       run: |
-        source francinette-venv/bin/activate
-        python -m francinette --version
-        python -m francinette .
+        . venv/bin/activate
+        python -c "from francinette import main; main()" --version
+        python -c "from francinette import main; main()" .
