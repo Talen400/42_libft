@@ -1,4 +1,4 @@
-name: Francinette CI
+name: Test_libft CI
 
 on:
   push:
@@ -18,4 +18,6 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y gcc make libbsd-dev
     - name: Running test
-      run: make retest
+      run: |
+          make retest
+          valgrind --leak-check=full ./test
